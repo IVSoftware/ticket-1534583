@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:telerikPdf="clr-namespace:Telerik.XamarinForms.PdfViewer;assembly=Telerik.XamarinForms.PdfViewer"
+             xmlns:ticket_1534583="clr-namespace:ticket_1534583"
+             x:Class="ticket_1534583.MainPage">
+
+    <ContentPage.BindingContext>
+        <ticket_1534583:MainViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <telerikPdf:RadPdfViewerToolbar PdfViewer="{Binding Source={x:Reference pdfViewer}}">
+                <telerikPdf:NavigateToPreviousPageToolbarItem />
+                <telerikPdf:NavigateToPageToolbarItem />
+                <telerikPdf:NavigateToNextPageToolbarItem />
+                <telerikPdf:ZoomInToolbarItem />
+                <telerikPdf:ZoomOutToolbarItem />
+                <telerikPdf:FitToWidthToolbarItem />
+            </telerikPdf:RadPdfViewerToolbar>
+            <telerikPdf:RadPdfViewer Grid.Row="1"
+                                     Grid.ColumnSpan="3"
+                                     x:Name="pdfViewer"
+                                     Source="{Binding Source}" />
+            <Button Grid.Row="2"
+                    Text="URL"
+                    Command="{Binding TestWithUrlCommand}" />           
+            <Button Grid.Row="2" Grid.Column="1"
+                    Text="Rtf Text"
+                    Command="{Binding RtfTextOnlyCommand}" />
+            <Button Grid.Row="2"
+                    Grid.Column="2"
+                    Text="Rtf Image"
+                    Command="{Binding RtfWithImageCommand}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
