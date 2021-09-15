@@ -74,9 +74,11 @@ namespace ticket_1534583
 
             var rtfString = await GetRtfStringFromURL("https://www.ivsoftware.com/proto-21/text-only.rtf");
             RadFlowDocument doc = providerRTF.Import(rtfString);
-            RadFixedDocument fixedDocument = providerPDF.ExportToFixedDocument(doc);
 
-            Source = fixedDocument;
+            MemoryStream output = new MemoryStream();
+            providerPDF.Export(doc, output);
+
+            Source = output.ToArray();
         }
 
         public ICommand RtfWithImageCommand { get; }
