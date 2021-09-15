@@ -1,11 +1,13 @@
 ﻿using System;
 using System.ComponentModel;
 using System.IO;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Telerik.Windows.Documents.Fixed.Model;
+using Telerik.Windows.Documents.Flow.FormatProviders.Docx;
 using Telerik.Windows.Documents.Flow.FormatProviders.Pdf;
 using Telerik.Windows.Documents.Flow.FormatProviders.Rtf;
 using Telerik.Windows.Documents.Flow.Model;
@@ -26,8 +28,9 @@ namespace ticket_1534583
         public MainViewModel()
         {
             TestWithUrlCommand = new Command(OnTestWithUrl);
-            RtfTextOnlyCommand = new Command<object>(OnRtfTextOnly);
-            RtfWithImageCommand = new Command<object>(OnRtfWithImage);
+            RtfTextOnlyCommand = new Command(OnRtfTextOnly);
+            RtfWithImageCommand = new Command(OnRtfWithImage);
+            TestWithDocxCommand = new Command(OnTestWithDocx);
         }
 
         DocumentSource _Source = null;
@@ -89,9 +92,29 @@ namespace ticket_1534583
 
             var rtfString = await GetRtfStringFromURL("https://www.ivsoftware.com/proto-21/malabre-document.rtf");
             RadFlowDocument doc = providerRTF.Import(rtfString);
-            RadFixedDocument fixedDocument = providerPDF.ExportToFixedDocument(doc);
 
-            Source = fixedDocument;
+            MemoryStream output = new MemoryStream();
+            providerPDF.Export(doc, output);
+
+            Source = output.ToArray();
+        }
+        public ICommand TestWithDocxCommand { get; }
+        private void OnTestWithDocx(object arg)
+        {
+            // https://stackoverflow.com/questions/54918919/how-to-read-docx-file-from-a-url-using-net
+
+            byte[] bytes;
+            using (WebClient myWebClient = new WebClient())
+            {
+                // Download the Web resource and save it into a data buffer.
+                bytes = myWebClient.DownloadData("https://www.ivsoftware.com/proto-21/high-def.docx");
+            }
+            var radFlowDoc = new DocxFormatProvider().Import(bytes);
+
+            MemoryStream output = new MemoryStream();
+            new PdfFormatProvider().Export(radFlowDoc, output);
+
+            Source = output.ToArray();
         }
     }
 }

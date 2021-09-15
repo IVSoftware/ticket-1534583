@@ -19,6 +19,7 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <telerikPdf:RadPdfViewerToolbar PdfViewer="{Binding Source={x:Reference pdfViewer}}">
                 <telerikPdf:NavigateToPreviousPageToolbarItem />
@@ -29,7 +30,7 @@
                 <telerikPdf:FitToWidthToolbarItem />
             </telerikPdf:RadPdfViewerToolbar>
             <telerikPdf:RadPdfViewer Grid.Row="1"
-                                     Grid.ColumnSpan="3"
+                                     Grid.ColumnSpan="4"
                                      x:Name="pdfViewer"
                                      Source="{Binding Source}" />
             <Button Grid.Row="2"
@@ -42,6 +43,10 @@
                     Grid.Column="2"
                     Text="Rtf Image"
                     Command="{Binding RtfWithImageCommand}" />
+            <Button Grid.Row="2"
+                    Grid.Column="3"
+                    Text="Docx"
+                    Command="{Binding TestWithDocxCommand}" />
         </Grid>
     </ContentPage.Content>
 </ContentPage>
