@@ -54,8 +54,20 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Telerik.Documents.Core">
+      <Version>2021.3.909</Version>
+    </PackageReference>
+    <PackageReference Include="Telerik.Documents.Fixed">
+      <Version>2021.3.909</Version>
+    </PackageReference>
+    <PackageReference Include="Telerik.Documents.ImageUtils">
+      <Version>2021.3.909</Version>
+    </PackageReference>
     <PackageReference Include="Telerik.UI.for.Xamarin.Trial">
       <Version>2021.2.728.1</Version>
+    </PackageReference>
+    <PackageReference Include="Telerik.Zip">
+      <Version>2021.3.909</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2083" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
