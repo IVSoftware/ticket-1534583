@@ -98,6 +98,7 @@ namespace ticket_1534583
 
             Source = output.ToArray();
         }
+
         public ICommand TestWithDocxCommand { get; }
         private void OnTestWithDocx(object arg)
         {

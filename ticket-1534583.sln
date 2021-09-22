@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ticket-1534583.Android", "t
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ticket-1534583.iOS", "ticket-1534583\ticket-1534583.iOS\ticket-1534583.iOS.csproj", "{357053EB-9773-437F-8C5D-ABC57ECBC2D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ticket-1534583", "ticket-1534583\ticket-1534583\ticket-1534583.csproj", "{BBBBF0C2-F853-4018-8865-54221932D83D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ticket-1534583", "ticket-1534583\ticket-1534583\ticket-1534583.csproj", "{BBBBF0C2-F853-4018-8865-54221932D83D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
